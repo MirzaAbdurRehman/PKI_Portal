@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apply — EFU Life Portal</title>
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/apply.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <a href="index.html" class="brand">
+      <span class="brand-mark">E</span>
+      <span class="brand-name">EFU <span>Life</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="policies.html">Policies</a></li>
+      <li><a href="apply.html" class="active">Apply Now</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="apply.html" class="btn btn-ghost">Client Login</a>
+    </div>
+    <button class="hamburger" aria-label="Menu">&#9776;</button>
+  </div>
+</nav>
+
+<header class="page-hero" style="padding-bottom:0;">
+  <div class="wrap">
+    <div class="eyebrow-line"><span class="rule"></span> Proposal &amp; certificate flow</div>
+    <h1>Start your application</h1>
+    <p>Select a plan, verify your identity, and complete payment — your digital certificate follows automatically.</p>
+  </div>
+</header>
+
+<div class="apply-shell">
+  <div class="wrap apply-grid">
+
+    <!-- Stepper -->
+    <div class="stepper">
+      <div class="step-item active">
+        <div class="step-dot"><span>1</span></div>
+        <div class="step-label"><b>Choose plan</b><span>Policy selection</span></div>
+      </div>
+      <div class="step-item">
+        <div class="step-dot"><span>2</span></div>
+        <div class="step-label"><b>Your details</b><span>Proposal creation</span></div>
+      </div>
+      <div class="step-item">
+        <div class="step-dot"><span>3</span></div>
+        <div class="step-label"><b>eKYC</b><span>CNIC &amp; biometric</span></div>
+      </div>
+      <div class="step-item">
+        <div class="step-dot"><span>4</span></div>
+        <div class="step-label"><b>Payment</b><span>Coverage &amp; premium</span></div>
+      </div>
+      <div class="step-item">
+        <div class="step-dot"><span>5</span></div>
+        <div class="step-label"><b>Review</b><span>Confirm details</span></div>
+      </div>
+      <div class="step-item">
+        <div class="step-dot"><span>6</span></div>
+        <div class="step-label"><b>Certificate</b><span>RA &rarr; CA issuance</span></div>
+      </div>
+      <div class="step-item">
+        <div class="step-dot"><span>7</span></div>
+        <div class="step-label"><b>Done</b><span>Policy active</span></div>
+      </div>
+    </div>
+
+    <!-- Form card -->
+    <div class="form-card">
+
+      <!-- Panel 1: Plan selection -->
+      <div class="form-panel active" data-panel="plan">
+        <h3>Choose your plan</h3>
+        <p class="fp-sub">Pick the policy you'd like to proceed with.</p>
+
+        <div class="plan-select-grid">
+          <div class="plan-pick" data-plan-name="Security Plus Plan">
+            <h5>Security Plus Plan</h5>
+            <span>Family protection</span>
+          </div>
+          <div class="plan-pick" data-plan-name="Mukammal Sehat">
+            <h5>Mukammal Sehat</h5>
+            <span>Health cover</span>
+          </div>
+          <div class="plan-pick" data-plan-name="Education Plan">
+            <h5>Education Plan</h5>
+            <span>Child's future</span>
+          </div>
+          <div class="plan-pick" data-plan-name="Prosperity for Life Plan">
+            <h5>Prosperity for Life</h5>
+            <span>Everyday savings</span>
+          </div>
+          <div class="plan-pick" data-plan-name="Capital Growth Plan">
+            <h5>Capital Growth Plan</h5>
+            <span>Building wealth</span>
+          </div>
+          <div class="plan-pick" data-plan-name="Executive Pension Plus Plan">
+            <h5>Executive Pension Plus</h5>
+            <span>Retirement</span>
+          </div>
+        </div>
+        <p class="field-error plan-error" style="display:none;">Please select a plan to continue.</p>
+
+        <div class="form-nav">
+          <span></span>
+          <button class="btn btn-primary" data-action="next">Continue</button>
+        </div>
+      </div>
+
+      <!-- Panel 2: Personal details / eKYC -->
+      <div class="form-panel" data-panel="details">
+        <h3>Your details</h3>
+        <p class="fp-sub">This information is used for proposal creation and eKYC verification.</p>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Full name <span class="req-star">*</span></label>
+            <input type="text" id="inp-name" data-required="true" placeholder="As per CNIC">
+            <span class="field-error">Please enter your full name.</span>
+          </div>
+          <div class="form-group">
+            <label>CNIC number <span class="req-star">*</span></label>
+            <input type="text" id="inp-cnic" data-required="true" inputmode="numeric" maxlength="15" autocomplete="off" placeholder="XXXXX-XXXXXXX-X">
+            <span class="field-error">Enter your 13-digit CNIC as XXXXX-XXXXXXX-X.</span>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Date of birth <span class="req-star">*</span></label>
+            <input type="date" id="inp-dob" data-required="true">
+            <span class="field-error">Please select your date of birth.</span>
+          </div>
+          <div class="form-group">
+            <label>City <span class="req-star">*</span></label>
+            <input type="text" id="inp-city" data-required="true" placeholder="e.g. Karachi">
+            <span class="field-error">Please enter your city.</span>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Contact number <span class="req-star">*</span></label>
+            <div class="phone-input">
+              <span aria-hidden="true">+92</span>
+              <input type="tel" id="inp-phone" data-required="true" inputmode="numeric" maxlength="10" autocomplete="tel-national" placeholder="3XX-XXXXXXX">
+            </div>
+            <span class="field-error">Enter a valid 10-digit Pakistani mobile number.</span>
+          </div>
+          <div class="form-group">
+            <label>Email address <span class="req-star">*</span></label>
+            <input type="email" id="inp-email" data-required="true" placeholder="you@example.com">
+            <span class="field-error">Please enter a valid email.</span>
+          </div>
+        </div>
+
+        <div class="form-nav">
+          <button class="btn btn-ghost" data-action="back">&larr; Back</button>
+          <button class="btn btn-primary" data-action="next-ekyc">Continue to eKYC</button>
+        </div>
+      </div>
+
+      <!-- Panel 2b: eKYC verification (live simulation) -->
+      <div class="form-panel" data-panel="ekyc">
+        <h3>eKYC &amp; verification</h3>
+        <p class="fp-sub">Insurer performs eKYC — CNIC, biometric and contact checks.</p>
+
+        <div class="ekyc-list">
+          <div class="ekyc-item" id="ekyc-cnic">
+            <div class="ekyc-spinner"></div>
+            <div class="ekyc-text"><b>Verifying CNIC with NADRA</b><span>Matching name, CNIC and date of birth</span></div>
+            <div class="ekyc-status">Pending</div>
+          </div>
+          <div class="ekyc-item" id="ekyc-bio">
+            <div class="ekyc-spinner"></div>
+            <div class="ekyc-text"><b>Biometric verification</b><span>Confirming identity via fingerprint / facial match</span></div>
+            <div class="ekyc-status">Pending</div>
+          </div>
+          <div class="ekyc-item" id="ekyc-contact">
+            <div class="ekyc-spinner"></div>
+            <div class="ekyc-text"><b>Contact verification</b><span>Validating phone number and email</span></div>
+            <div class="ekyc-status">Pending</div>
+          </div>
+        </div>
+
+        <div class="ekyc-result" id="ekyc-result" style="display:none;">
+          <span id="ekyc-result-icon">&#10003;</span>
+          <div><b id="ekyc-result-title">Customer verified</b><span id="ekyc-result-sub">All checks passed successfully.</span></div>
+        </div>
+
+        <div class="form-nav">
+          <button class="btn btn-ghost" data-action="back">&larr; Back</button>
+          <button class="btn btn-primary" data-action="next" id="ekyc-continue-btn" disabled>Continue to payment</button>
+        </div>
+      </div>
+
+      <!-- Panel 3: Coverage & payment -->
+      <div class="form-panel" data-panel="payment">
+        <h3>Coverage &amp; payment</h3>
+        <p class="fp-sub">Set your coverage amount and premium frequency.</p>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Coverage amount (PKR) <span class="req-star">*</span></label>
+            <input type="number" id="inp-cover" data-required="true" placeholder="e.g. 1000000">
+            <span class="field-error">Please enter a coverage amount.</span>
+          </div>
+          <div class="form-group">
+            <label>Policy term (years) <span class="req-star">*</span></label>
+            <input type="number" id="inp-term" data-required="true" placeholder="e.g. 15">
+            <span class="field-error">Please enter a policy term.</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Premium frequency</label>
+          <select id="inp-freq">
+            <option>Monthly</option>
+            <option>Quarterly</option>
+            <option>Annual</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Payment method</label>
+          <select id="inp-pay-method">
+            <option>Debit / Credit Card</option>
+            <option>Bank Transfer</option>
+            <option>Mobile Wallet</option>
+          </select>
+        </div>
+
+        <div class="form-nav">
+          <button class="btn btn-ghost" data-action="back">&larr; Back</button>
+          <button class="btn btn-primary" data-action="next">Review application</button>
+        </div>
+      </div>
+
+      <!-- Panel 4: Review -->
+      <div class="form-panel" data-panel="review">
+        <h3>Review your application</h3>
+        <p class="fp-sub">Confirm everything looks correct before submitting.</p>
+
+        <div class="review-block">
+          <h5>Plan</h5>
+          <div class="review-row"><span>Selected plan</span><span id="rv-plan">—</span></div>
+        </div>
+
+        <div class="review-block">
+          <h5>Personal details</h5>
+          <div class="review-row"><span>Full name</span><span id="rv-name">—</span></div>
+          <div class="review-row"><span>CNIC</span><span id="rv-cnic">—</span></div>
+          <div class="review-row"><span>Date of birth</span><span id="rv-dob">—</span></div>
+          <div class="review-row"><span>City</span><span id="rv-city">—</span></div>
+          <div class="review-row"><span>Phone</span><span id="rv-phone">—</span></div>
+          <div class="review-row"><span>Email</span><span id="rv-email">—</span></div>
+        </div>
+
+        <div class="review-block">
+          <h5>Coverage</h5>
+          <div class="review-row"><span>Coverage amount</span><span id="rv-cover">—</span></div>
+          <div class="review-row"><span>Policy term</span><span id="rv-term">—</span></div>
+          <div class="review-row"><span>Premium frequency</span><span id="rv-freq">—</span></div>
+        </div>
+
+        <div class="form-nav">
+          <button class="btn btn-ghost" data-action="back">&larr; Back</button>
+          <button class="btn btn-primary" data-action="submit">Submit &amp; pay</button>
+        </div>
+      </div>
+
+      <!-- Panel 4b: Payment processing + Certificate request (RA -> CA) -->
+      <div class="form-panel" data-panel="certificate">
+        <h3>Payment &amp; certificate issuance</h3>
+        <p class="fp-sub">Your payment is confirmed, then a digital certificate is requested from the Certificate Authority.</p>
+
+        <div class="cert-flow">
+          <div class="cert-step" id="cert-payment">
+            <div class="cert-icon">&#128179;</div>
+            <div class="cert-text"><b>Payment received</b><span>Application approved by insurer</span></div>
+            <div class="cert-badge">Pending</div>
+          </div>
+
+          <div class="cert-arrow">&#8595;</div>
+
+          <div class="cert-step" id="cert-csr">
+            <div class="cert-icon">&#128273;</div>
+            <div class="cert-text"><b>Insurer (RA) creates certificate request</b><span>CSR sent via RA API, over TLS</span></div>
+            <div class="cert-badge">Pending</div>
+          </div>
+
+          <div class="cert-arrow">&#8595;</div>
+
+          <div class="cert-step" id="cert-validate">
+            <div class="cert-icon">&#128737;</div>
+            <div class="cert-text"><b>CA validates request</b><span>Applies certificate profile &amp; issuance policy</span></div>
+            <div class="cert-badge">Pending</div>
+          </div>
+
+          <div class="cert-arrow">&#8595;</div>
+
+          <div class="cert-step" id="cert-issued">
+            <div class="cert-icon">&#9989;</div>
+            <div class="cert-text"><b>Certificate issued</b><span>Short-lived certificate returned to insurer, over TLS</span></div>
+            <div class="cert-badge">Pending</div>
+          </div>
+        </div>
+
+        <div class="form-nav" style="justify-content:flex-end;">
+          <button class="btn btn-primary" data-action="finish" id="cert-finish-btn" disabled>View confirmation</button>
+        </div>
+      </div>
+
+      <!-- Panel 5: Success / certificate -->
+      <div class="form-panel" data-panel="success">
+        <div class="success-wrap">
+          <div class="success-icon">&#10003;</div>
+          <h3>Application submitted</h3>
+          <p>Your identity was verified, payment confirmed, and a short-lived digital certificate was issued for your policy.</p>
+          <div class="ref-box">Reference: <span id="ref-number">—</span></div>
+          <div>
+            <a href="index.html" class="btn btn-primary">Back to home</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-bottom">
+      <span>&copy; 2026 EFU Life. All rights reserved.</span>
+      <span>Regulated by SECP</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+<script src="../js/apply.js"></script>
+</body>
+</html>
