@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NIFT Life Portal — Life, Health &amp; Savings Insurance in Pakistan</title>
+<link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+
+<div class="util-bar">
+  <div class="wrap">
+    <div class="util-left">
+      <a href="tel:+9221111338111">+92-21-111-NIFT-111</a>
+      <a href="mailto:info@niftlife.com">info@niftlife.com</a>
+    </div>
+    <div class="util-right">
+      <a href="#">Branch Locator</a>
+      <a href="#">Client Login</a>
+    </div>
+  </div>
+</div>
+
+<nav class="nav">
+  <div class="wrap">
+    <a href="index.html" class="brand">
+      <span class="brand-mark">E</span>
+      <span class="brand-name">NIFT <span>Life</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="policies.html">Policies</a></li>
+      <li><a href="apply.html">Apply Now</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="apply.html" class="btn btn-ghost">Client Login</a>
+      <a href="apply.html" class="btn btn-primary">Get a Quote</a>
+    </div>
+    <button class="hamburger" aria-label="Menu">&#9776;</button>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-copy">
+      <div class="eyebrow-line"><span class="rule"></span> Pakistan's trusted life &amp; health partner</div>
+      <h1>Protection and savings, built around your life</h1>
+      <p class="hero-sub">From family protection to child education, health cover to retirement — explore plans designed around real milestones, and see an estimated premium in seconds.</p>
+      <div class="hero-actions">
+        <a href="apply.html" class="btn btn-gold">Start your application</a>
+        <a href="policies.html" class="btn" style="color:var(--cream);border:1px solid rgba(250,248,243,.3);padding:11px 22px;border-radius:6px;">Browse all policies</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hstat"><b>14M+</b><span>Lives insured</span></div>
+        <div class="hstat"><b>PKR 11.96B</b><span>Claims paid in 2025</span></div>
+        <div class="hstat"><b>PKR 263B</b><span>Funds under management</span></div>
+      </div>
+    </div>
+
+    <div class="calc-card">
+      <h3>Estimate your premium</h3>
+      <p class="calc-sub">A quick illustrative estimate — final premium is confirmed after underwriting.</p>
+
+      <div class="field">
+        <label>Plan type</label>
+        <select id="calc-plan">
+          <option value="Security Plus Plan">Security Plus Plan</option>
+          <option value="Mukammal Sehat">Mukammal Sehat</option>
+          <option value="Education Plan">Education Plan</option>
+          <option value="Prosperity for Life Plan">Prosperity for Life Plan</option>
+          <option value="Capital Growth Plan">Capital Growth Plan</option>
+          <option value="Executive Pension Plus Plan">Executive Pension Plus Plan</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Your age <b id="calc-age-out">30</b></label>
+        <input type="range" id="calc-age" min="18" max="65" value="30">
+      </div>
+
+      <div class="field">
+        <label>Coverage amount <b id="calc-cover-out">PKR 1,000,000</b></label>
+        <input type="range" id="calc-cover" min="200000" max="10000000" step="100000" value="1000000">
+      </div>
+
+      <div class="field">
+        <label>Payment frequency</label>
+        <div class="seg">
+          <button type="button" class="active" data-freq="monthly">Monthly</button>
+          <button type="button" data-freq="quarterly">Quarterly</button>
+          <button type="button" data-freq="annual">Annual</button>
+        </div>
+      </div>
+
+      <div class="calc-result">
+        <div>
+          <div class="r-label">Estimated premium</div>
+          <div class="r-amount" id="calc-result-amount">PKR 0</div>
+        </div>
+      </div>
+
+      <a href="apply.html" id="calc-apply-link" class="btn btn-primary">Apply with this estimate</a>
+    </div>
+  </div>
+</header>
+
+<section class="section" id="categories">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <span class="eyebrow">Coverage categories</span>
+        <h2>Six ways NIFT protects what matters</h2>
+      </div>
+      <p>Individual and family plans across life, health, motor, property, liability and specialty cover.</p>
+    </div>
+
+    <div class="cat-rail">
+      <div class="cat-card reveal">
+        <div class="cat-icon">&#9830;</div>
+        <h4>Life &amp; Savings</h4>
+        <p>Unit-linked plans combining protection with long-term investment growth.</p>
+        <a href="policies.html#life-savings" class="cat-link">View plans &rarr;</a>
+      </div>
+      <div class="cat-card reveal">
+        <div class="cat-icon">&#10084;</div>
+        <h4>Health</h4>
+        <p>Cashless hospitalization for individuals and families, conventional or Takaful.</p>
+        <a href="policies.html#health" class="cat-link">View plans &rarr;</a>
+      </div>
+      <div class="cat-card reveal">
+        <div class="cat-icon">&#128663;</div>
+        <h4>Motor</h4>
+        <p>Comprehensive and third-party cover for private and commercial vehicles.</p>
+        <a href="policies.html#motor" class="cat-link">View plans &rarr;</a>
+      </div>
+      <div class="cat-card reveal">
+        <div class="cat-icon">&#127968;</div>
+        <h4>Property &amp; Fire</h4>
+        <p>Protection for homes, factories and equipment against physical loss.</p>
+        <a href="policies.html#property" class="cat-link">View plans &rarr;</a>
+      </div>
+      <div class="cat-card reveal">
+        <div class="cat-icon">&#9878;</div>
+        <h4>Liability</h4>
+        <p>Legal and compensation cover for directors, employers and businesses.</p>
+        <a href="policies.html#liability" class="cat-link">View plans &rarr;</a>
+      </div>
+      <div class="cat-card reveal">
+        <div class="cat-icon">&#9992;</div>
+        <h4>Miscellaneous</h4>
+        <p>Travel, crop &amp; livestock, and financial lines cover for specific needs.</p>
+        <a href="policies.html#misc" class="cat-link">View plans &rarr;</a>
+      </div>
+      <div class="cat-card reveal">
+        <div class="cat-icon">&#127891;</div>
+        <h4>Child's Future</h4>
+        <p>Target savings for education and marriage milestones, built early.</p>
+        <a href="policies.html#child" class="cat-link">View plans &rarr;</a>
+      </div>
+      <div class="cat-card reveal">
+        <div class="cat-icon">&#128176;</div>
+        <h4>Retirement</h4>
+        <p>Wealth-building assets to secure income in your senior years.</p>
+        <a href="policies.html#retirement" class="cat-link">View plans &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <span class="eyebrow">Popular plans</span>
+        <h2>Plans people start with</h2>
+      </div>
+      <p>A starting point — every plan can be tailored during your application.</p>
+    </div>
+
+    <div class="plans-grid">
+      <div class="plan-card reveal">
+        <div class="plan-top">
+          <span class="plan-tag">Life &amp; Savings</span>
+          <h4>Security Plus Plan</h4>
+          <p class="plan-desc">Pure protection ensuring financial continuation for your family.</p>
+        </div>
+        <ul class="plan-feats">
+          <li>Death benefit paid to nominee</li>
+          <li>Optional accidental cover</li>
+          <li>Flexible premium terms</li>
+        </ul>
+        <div class="plan-bottom"><a href="apply.html" class="btn btn-primary">Apply now</a></div>
+      </div>
+
+      <div class="plan-card reveal">
+        <div class="plan-top">
+          <span class="plan-tag">Health</span>
+          <h4>Mukammal Sehat</h4>
+          <p class="plan-desc">Cashless hospitalization up to PKR 1,000,000, individual or family.</p>
+        </div>
+        <ul class="plan-feats">
+          <li>Personal or Family Shield options</li>
+          <li>Pre-existing condition support</li>
+          <li>Wide panel hospital network</li>
+        </ul>
+        <div class="plan-bottom"><a href="apply.html" class="btn btn-primary">Apply now</a></div>
+      </div>
+
+      <div class="plan-card reveal">
+        <div class="plan-top">
+          <span class="plan-tag">Child's Future</span>
+          <h4>Education Plan</h4>
+          <p class="plan-desc">Target savings timed to your child's education milestones.</p>
+        </div>
+        <ul class="plan-feats">
+          <li>Milestone-based payouts</li>
+          <li>Premium waiver benefit</li>
+          <li>Investment growth linked</li>
+        </ul>
+        <div class="plan-bottom"><a href="apply.html" class="btn btn-primary">Apply now</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="process">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <span class="eyebrow">How it works</span>
+        <h2>From proposal to policy, in four steps</h2>
+      </div>
+      <p>The same digital issuance flow used across our online plans.</p>
+    </div>
+    <div class="flow">
+      <div class="flow-step reveal">
+        <div class="flow-num">01</div>
+        <h4>Select &amp; propose</h4>
+        <p>Choose a policy, enter your details, and a proposal is created.</p>
+      </div>
+      <div class="flow-step reveal">
+        <div class="flow-num">02</div>
+        <h4>eKYC verification</h4>
+        <p>CNIC and biometric checks confirm your identity securely.</p>
+      </div>
+      <div class="flow-step reveal">
+        <div class="flow-num">03</div>
+        <h4>Payment &amp; approval</h4>
+        <p>Pay your premium and your application is approved.</p>
+      </div>
+      <div class="flow-step reveal">
+        <div class="flow-num">04</div>
+        <h4>Certificate issued</h4>
+        <p>A secure digital certificate confirms your policy is active.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="trust-strip">
+  <div class="wrap">
+    <div class="trust-grid">
+      <div class="reveal"><b>14M+</b><span>Lives insured</span></div>
+      <div class="reveal"><b>PKR 11.96B</b><span>Claims paid, 2025</span></div>
+      <div class="reveal"><b>PKR 2.44B</b><span>Profit after tax, 2025</span></div>
+      <div class="reveal"><b>PKR 263B</b><span>Funds under management</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <span class="eyebrow">Why families choose us</span>
+        <h2>What our policyholders say</h2>
+      </div>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card reveal">
+        <p class="testi-quote">"The income benefit supported my children's education when I needed it most."</p>
+        <div class="testi-name">Zarnak Sidhwa</div>
+        <div class="testi-role">Policyholder, Life &amp; Savings</div>
+      </div>
+      <div class="testi-card reveal">
+        <p class="testi-quote">"The payout secured my family's future and opened new possibilities for us."</p>
+        <div class="testi-name">Malik Aslam Awan</div>
+        <div class="testi-role">Policyholder, Family Protection</div>
+      </div>
+      <div class="testi-card reveal">
+        <p class="testi-quote">"Coverage during my health emergency eased the financial burden completely."</p>
+        <div class="testi-name">Kamran Malik</div>
+        <div class="testi-role">Policyholder, Health Plan</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt" id="contact">
+  <div class="cta-band reveal">
+    <div>
+      <h3>Ready to see your estimated premium in full?</h3>
+      <p>Start your application — it takes about five minutes.</p>
+    </div>
+    <a href="apply.html" class="btn btn-primary">Start application</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="index.html" class="brand">
+          <span class="brand-mark">E</span>
+          <span class="brand-name" style="color:var(--cream);">NIFT <span style="color:var(--gold);">Life</span></span>
+        </a>
+        <p>Leading Life, Health and Family Takaful operator in Pakistan. NIFT Life House, Plot No.112, 8th East Street, Phase 1, DHA, Karachi.</p>
+        <div class="foot-social">
+          <a href="#">FB</a><a href="#">IG</a><a href="#">LI</a><a href="#">YT</a>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="#">About us</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Investor relations</a></li>
+          <li><a href="#">Funds</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h5>Products</h5>
+        <ul>
+          <li><a href="policies.html">Life &amp; Savings</a></li>
+          <li><a href="policies.html">Health</a></li>
+          <li><a href="policies.html">Motor</a></li>
+          <li><a href="policies.html">Property &amp; Fire</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h5>Support</h5>
+        <ul>
+          <li><a href="#">FAQs</a></li>
+          <li><a href="#">Claims</a></li>
+          <li><a href="#">Complaints</a></li>
+          <li><a href="#">Contact us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>&copy; 2026 NIFT Life. All rights reserved.</span>
+      <span>Regulated by SECP</span>
+    </div>
+  </div>
+</footer>
+
+<script src="./js/main.js"></script>
+<script src="./js/calculator.js"></script>
+</body>
+</html>
