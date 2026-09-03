@@ -274,20 +274,46 @@
         </div>
       </div>
 
-      <!-- Panel 4b: Payment processing + Certificate request (RA -> CA) -->
+      <!-- Panel 5: Mobile app signing -->
+      <div class="form-panel" data-panel="mobile-approval">
+        <h3>Payment successful</h3>
+        <p class="fp-sub">Payment has successfully been completed. Your request has been sent to the mobile app for policy signing.</p>
+
+        <div style="display:flex; justify-content:center; padding:10px 0 14px;">
+          <div style="width:360px; background:#111827; border-radius:34px; padding:12px; box-shadow:0 16px 28px rgba(16,24,40,.18);">
+            <div style="background:#f2efe8; border-radius:26px; padding:12px 14px 16px; min-height:560px;">
+              <div style="display:flex; align-items:center; justify-content:space-between; font-size:12px; color:#334155; font-weight:600;">
+                <span>NIFT Life</span>
+                <span style="display:inline-flex; align-items:center; justify-content:center; width:24px; height:24px; border-radius:50%; background:#dfe9e1;">✓</span>
+              </div>
+
+              <div style="margin-top:12px; background:#ffffff; border:1px solid rgba(82,100,90,.2); border-radius:16px; padding:10px 12px;">
+                <div style="font-size:11px; color:#64748b; text-transform:uppercase; letter-spacing:.05em;">Unsigned policy packet</div>
+                <div id="mobile-policy-name" style="margin-top:8px; font-size:18px; font-weight:700; color:#1e293b;">—</div>
+                <div style="margin-top:8px; font-size:12px; color:#475569;">Applicant: <strong id="mobile-applicant-name">—</strong></div>
+                <div style="margin-top:4px; font-size:12px; color:#475569;">CNIC: <strong id="mobile-applicant-cnic">—</strong></div>
+                <div style="margin-top:4px; font-size:12px; color:#475569;">City: <strong id="mobile-applicant-city">—</strong></div>
+              </div>
+
+              <div style="margin-top:12px; height:330px; overflow:auto; background:#ffffff; border:1px solid rgba(82,100,90,.18); border-radius:16px; padding:12px;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                  <div style="font-size:11px; font-weight:700; color:#334155;">Policy document</div>
+                  <div style="font-size:10px; color:#64748b;">PDF</div>
+                </div>
+                <div id="mobile-policy-list" style="display:flex; flex-direction:column; gap:8px;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Panel 6: Certificate request (RA -> CA) -->
       <div class="form-panel" data-panel="certificate">
-        <h3>Payment &amp; certificate issuance</h3>
-        <p class="fp-sub">Your payment is confirmed, then a digital certificate is requested from the Certificate Authority.</p>
+        <h3>Certificate issuance</h3>
+        <p class="fp-sub">Your signed policy has been accepted. The certificate is now generated through the insurer and the certificate authority.</p>
 
         <div class="cert-flow">
-          <div class="cert-step" id="cert-payment">
-            <div class="cert-icon">&#128179;</div>
-            <div class="cert-text"><b>Payment received</b><span>Application approved by insurer</span></div>
-            <div class="cert-badge">Pending</div>
-          </div>
-
-          <div class="cert-arrow">&#8595;</div>
-
           <div class="cert-step" id="cert-csr">
             <div class="cert-icon">&#128273;</div>
             <div class="cert-text"><b>Insurer (RA) creates certificate request</b><span>CSR sent via RA API, over TLS</span></div>

@@ -5,9 +5,10 @@
   const stepItems = document.querySelectorAll('.step-item');
   if (!panels.length) return;
 
-  const panelOrder = ['plan', 'details', 'ekyc', 'review', 'payment', 'certificate', 'success'];
+  const panelOrder = ['plan', 'details', 'ekyc', 'review', 'payment', 'mobile-approval', 'certificate', 'success'];
   let current = 0;
   let selectedPlan = null;
+  let signedApplicantName = '';
 
   const planFactors = {
     'Security Plus Plan': 0.9,
@@ -63,8 +64,9 @@
     });
 
     const activePanel = panels[index];
-    if (activePanel && (activePanel.dataset.panel === 'review' || activePanel.dataset.panel === 'payment')) {
+    if (activePanel && (activePanel.dataset.panel === 'review' || activePanel.dataset.panel === 'payment' || activePanel.dataset.panel === 'mobile-approval')) {
       refreshPremiumSummary();
+      renderMobileApproval();
     }
 
     const card = document.querySelector('.form-card');
@@ -102,8 +104,13 @@
     btn.addEventListener('click', () => {
       if (!validatePanel(current)) return;
       if (panels[current].dataset.panel === 'payment') buildReview();
+
       current++;
       showPanel(current);
+
+      if (panels[current - 1] && panels[current - 1].dataset.panel === 'mobile-approval') {
+        runCertificateSimulation();
+      }
     });
   });
 
@@ -211,10 +218,9 @@
 
   function runCertificateSimulation() {
     const steps = [
-      { id: 'cert-payment', delay: 900 },
-      { id: 'cert-csr', delay: 2200 },
-      { id: 'cert-validate', delay: 3600 },
-      { id: 'cert-issued', delay: 4800 },
+      { id: 'cert-csr', delay: 1200 },
+      { id: 'cert-validate', delay: 2800 },
+      { id: 'cert-issued', delay: 4400 },
     ];
     const finishBtn = document.getElementById('cert-finish-btn');
     if (finishBtn) finishBtn.disabled = true;
@@ -296,6 +302,124 @@
     if (reviewPremiumEl) reviewPremiumEl.textContent = premium.text;
   }
 
+  function renderMobileApproval() {
+    const selected = selectedPlan || 'Security Plus Plan';
+    const name = fieldVal('inp-name') || '—';
+    signedApplicantName = name !== '—' ? name : signedApplicantName || 'Customer';
+    const cnic = fieldVal('inp-cnic') || '—';
+    const city = fieldVal('inp-city') || '—';
+    const phone = fieldVal('inp-phone') ? '+92 ' + fieldVal('inp-phone') : '—';
+    const email = fieldVal('inp-email') || '—';
+    const dob = fieldVal('inp-dob') || '—';
+    const cover = fieldVal('inp-cover') ? 'PKR ' + Number(fieldVal('inp-cover')).toLocaleString('en-PK') : '—';
+    const frequency = fieldVal('inp-freq') || '—';
+
+    const policyNameEl = document.getElementById('mobile-policy-name');
+    if (policyNameEl) policyNameEl.textContent = selected;
+
+    const applicantNameEl = document.getElementById('mobile-applicant-name');
+    if (applicantNameEl) applicantNameEl.textContent = name;
+
+    const applicantCnicEl = document.getElementById('mobile-applicant-cnic');
+    if (applicantCnicEl) applicantCnicEl.textContent = cnic;
+
+    const applicantCityEl = document.getElementById('mobile-applicant-city');
+    if (applicantCityEl) applicantCityEl.textContent = city;
+
+    const benefitMap = {
+      'Security Plus Plan': [
+        'Family protection cover for spouse, children and dependents.',
+        'Lump-sum payout on life-cover event for financial continuity.',
+        'Priority claim support with simplified documentation and processing.',
+        'Flexible coverage options aligned to long-term family security goals.',
+        'Affordable premiums designed for ongoing protection and peace of mind.'
+      ],
+      'Education Plan': [
+        'Education savings structured for tuition, school and university milestones.',
+        'Dedicated planning for child education, marriage and future ambitions.',
+        'Regular savings discipline with a clear long-term funding roadmap.',
+        'Targeted maturity benefits aligned to academic and life-stage needs.',
+        'Secure growth with disciplined payout planning for future stability.'
+      ],
+      'Mukammal Sehat': [
+        'Cashless hospitalization and emergency medical support for the family.',
+        'Coverage for medicines, diagnostics, specialist consultations and procedures.',
+        'Day-care treatment benefits for regular and critical healthcare needs.',
+        'Protection against unexpected medical expenses and high treatment costs.',
+        'Shariah-friendly and family-focused benefits for practical health security.'
+      ],
+      'Capital Growth Plan': [
+        'Long-term wealth accumulation through a disciplined growth strategy.',
+        'Investment-linked benefits designed for future financial milestones.',
+        'Structured capital appreciation journey with stable long-term value.',
+        'Flexible planning for retirement, housing and major life objectives.',
+        'Optimized returns with disciplined protection features for lasting wealth.'
+      ],
+      'Executive Pension Plus Plan': [
+        'Retirement income planning to maintain stability in senior years.',
+        'Structured pension benefits that support ongoing living expenses.',
+        'Financial continuity beyond active employment and business life.',
+        'Protection for dependents while ensuring dependable retirement security.',
+        'Long-term stability through disciplined pension accumulation and planning.'
+      ],
+      'Prosperity for Life Plan': [
+        'Balanced protection and savings strategy for personal life security.',
+        'Stable long-term value with consistent planning and future readiness.',
+        'Designed for personal security, wealth continuity and milestone protection.',
+        'Financial continuity through changing life stages and household needs.',
+        'Access to meaningful life cover with savings benefits for future growth.'
+      ]
+    };
+
+    const selectedBenefits = benefitMap[selected] || benefitMap['Security Plus Plan'];
+    const mobileList = document.getElementById('mobile-policy-list');
+    if (mobileList) {
+      mobileList.innerHTML = `
+        <div style="display:flex; flex-direction:column; gap:12px;">
+          <div style="padding:10px 12px; border:1px solid rgba(82,100,90,.18); border-radius:12px; background:#eefae8;">
+            <div style="font-size:11px; color:#64748b; text-transform:uppercase; letter-spacing:.05em; margin-bottom:5px;">Selected policy</div>
+            <div style="font-size:18px; font-weight:700; color:#1f2937;">${selected}</div>
+          </div>
+
+          <div style="padding:10px 12px; border:1px solid rgba(82,100,90,.18); border-radius:12px; background:#f8faf8;">
+            <div style="font-size:11px; color:#64748b; text-transform:uppercase; letter-spacing:.05em; margin-bottom:8px;">Customer details</div>
+            <div style="display:flex; flex-direction:column; gap:6px; font-size:11px; color:#334155;">
+              <div style="display:flex; justify-content:space-between; gap:8px;"><span>Full name</span><strong style="text-align:right;">${name}</strong></div>
+              <div style="display:flex; justify-content:space-between; gap:8px;"><span>CNIC</span><strong style="text-align:right;">${cnic}</strong></div>
+              <div style="display:flex; justify-content:space-between; gap:8px;"><span>Date of birth</span><strong style="text-align:right;">${dob}</strong></div>
+              <div style="display:flex; justify-content:space-between; gap:8px;"><span>City</span><strong style="text-align:right;">${city}</strong></div>
+              <div style="display:flex; justify-content:space-between; gap:8px;"><span>Phone</span><strong style="text-align:right;">${phone}</strong></div>
+              <div style="display:flex; justify-content:space-between; gap:8px;"><span>Email</span><strong style="text-align:right;">${email}</strong></div>
+              <div style="display:flex; justify-content:space-between; gap:8px;"><span>Coverage</span><strong style="text-align:right;">${cover}</strong></div>
+              <div style="display:flex; justify-content:space-between; gap:8px;"><span>Frequency</span><strong style="text-align:right;">${frequency}</strong></div>
+            </div>
+          </div>
+
+          <div style="padding:10px 12px; border:1px solid rgba(82,100,90,.18); border-radius:12px; background:#f8faf8;">
+            <div style="font-size:11px; color:#64748b; text-transform:uppercase; letter-spacing:.05em; margin-bottom:8px;">Key benefits</div>
+            <ol style="margin:0; padding-left:18px; color:#334155; font-size:11px; line-height:1.7; list-style-type:decimal;">
+              ${selectedBenefits.map((benefit) => `<li>${benefit}</li>`).join('')}
+            </ol>
+          </div>
+
+          <div style="padding-top:8px; display:flex; justify-content:center;">
+            <button type="button" class="mobile-sign-btn" style="background:#1f332e; color:#ffffff; border:none; border-radius:999px; padding:10px 18px; font-weight:700; font-size:11px; cursor:pointer;">Sign</button>
+          </div>
+        </div>
+      `;
+
+      const signBtn = mobileList.querySelector('.mobile-sign-btn');
+      if (signBtn) {
+        signBtn.addEventListener('click', () => {
+          signedApplicantName = fieldVal('inp-name') || signedApplicantName || 'Customer';
+          current = panelOrder.indexOf('certificate');
+          showPanel(current);
+          runCertificateSimulation();
+        });
+      }
+    }
+  }
+
   function buildReview() {
     const map = {
       'rv-name': fieldVal('inp-name'),
@@ -320,7 +444,6 @@
     submitBtn.addEventListener('click', () => {
       current++;
       showPanel(current);
-      runCertificateSimulation();
     });
   }
 
