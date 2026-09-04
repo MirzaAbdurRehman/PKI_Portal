@@ -2,10 +2,11 @@
 
 (function () {
   const panels = document.querySelectorAll('.form-panel');
+  let selectedPolicyBenefits = [];
   const stepItems = document.querySelectorAll('.step-item');
   if (!panels.length) return;
 
-  const panelOrder = ['plan', 'details', 'ekyc', 'review', 'payment', 'mobile-approval', 'certificate', 'success'];
+  const panelOrder = ['plan', 'details', 'ekyc', 'review', 'payment', 'mobile-approval', 'certificate', 'signed-pdf', 'success'];
   let current = 0;
   let selectedPlan = null;
   let signedApplicantName = '';
@@ -58,12 +59,12 @@
 
   function showPanel(index) {
     panels.forEach((p) => p.classList.toggle('active', panelIndex(p.dataset.panel) === index));
+    const activePanel = panels[index];
     stepItems.forEach((s, i) => {
       s.classList.toggle('active', i === index);
       s.classList.toggle('done', i < index);
     });
 
-    const activePanel = panels[index];
     if (activePanel && (activePanel.dataset.panel === 'review' || activePanel.dataset.panel === 'payment' || activePanel.dataset.panel === 'mobile-approval')) {
       refreshPremiumSummary();
       renderMobileApproval();
@@ -255,6 +256,28 @@
 
     const lastDelay = steps[steps.length - 1].delay;
     setTimeout(() => {
+      const signedPdf = document.getElementById('signed-pdf');
+      const signedByName = document.getElementById('signed-by-name');
+      const signedDetails = {
+        'signed-policy-name': selectedPlan || 'Security Plus Plan',
+        'signed-applicant-name': fieldVal('inp-name') || signedApplicantName || 'Customer',
+        'signed-applicant-cnic': fieldVal('inp-cnic') || '—',
+        'signed-applicant-dob': fieldVal('inp-dob') || '—',
+        'signed-applicant-city': fieldVal('inp-city') || '—',
+        'signed-applicant-phone': fieldVal('inp-phone') ? '+92 ' + fieldVal('inp-phone') : '—',
+        'signed-applicant-email': fieldVal('inp-email') || '—',
+        'signed-policy-cover': fieldVal('inp-cover') ? 'PKR ' + Number(fieldVal('inp-cover')).toLocaleString('en-PK') : '—',
+        'signed-policy-frequency': fieldVal('inp-freq') || '—',
+      };
+      if (signedByName) signedByName.textContent = signedApplicantName || 'Customer';
+      const signedBenefits = document.getElementById('signed-policy-benefits');
+      if (signedBenefits) {
+        signedBenefits.innerHTML = selectedPolicyBenefits.map((benefit) => `<li>${benefit}</li>`).join('');
+      }
+      Object.keys(signedDetails).forEach((id) => {
+        const element = document.getElementById(id);
+        if (element) element.textContent = signedDetails[id];
+      });
       if (finishBtn) finishBtn.disabled = false;
     }, lastDelay + 400);
   }
@@ -372,6 +395,7 @@
     };
 
     const selectedBenefits = benefitMap[selected] || benefitMap['Security Plus Plan'];
+    selectedPolicyBenefits = selectedBenefits;
     const mobileList = document.getElementById('mobile-policy-list');
     if (mobileList) {
       mobileList.innerHTML = `
@@ -442,14 +466,29 @@
   const submitBtn = document.querySelector('[data-action="submit"]');
   if (submitBtn) {
     submitBtn.addEventListener('click', () => {
+      if (!validatePanel(current)) return;
+      buildReview();
+      submitBtn.disabled = true;
+      const successMessage = document.getElementById('payment-success');
+      if (successMessage) successMessage.classList.add('visible');
+      setTimeout(() => {
+        current++;
+        showPanel(current);
+      }, 2000);
+    });
+  }
+
+  const certificateNextBtn = document.getElementById('cert-finish-btn');
+  if (certificateNextBtn) {
+    certificateNextBtn.addEventListener('click', () => {
       current++;
       showPanel(current);
     });
   }
 
-  const finishBtn = document.getElementById('cert-finish-btn');
-  if (finishBtn) {
-    finishBtn.addEventListener('click', () => {
+  const signedPdfFinishBtn = document.getElementById('signed-pdf-finish-btn');
+  if (signedPdfFinishBtn) {
+    signedPdfFinishBtn.addEventListener('click', () => {
       current++;
       const ref = 'NIFT-' + Math.floor(100000 + Math.random() * 900000);
       const refEl = document.getElementById('ref-number');

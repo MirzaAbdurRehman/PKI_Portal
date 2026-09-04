@@ -64,10 +64,18 @@
       </div>
       <div class="step-item">
         <div class="step-dot"><span>6</span></div>
-        <div class="step-label"><b>Certificate</b><span>RA &rarr; CA issuance</span></div>
+        <div class="step-label"><b>Mobile App</b><span>Policy signing</span></div>
       </div>
       <div class="step-item">
         <div class="step-dot"><span>7</span></div>
+        <div class="step-label"><b>Certificate</b><span>RA &rarr; CA issuance</span></div>
+      </div>
+      <div class="step-item">
+        <div class="step-dot"><span>8</span></div>
+        <div class="step-label"><b>Signed PDF</b><span>Signed policy copy</span></div>
+      </div>
+      <div class="step-item">
+        <div class="step-dot"><span>9</span></div>
         <div class="step-label"><b>Done</b><span>Policy active</span></div>
       </div>
     </div>
@@ -268,6 +276,14 @@
           <strong id="payment-estimate" style="font-size:18px; color:#1f332e;">PKR 0</strong>
         </div>
 
+        <div class="payment-success" id="payment-success" aria-live="polite">
+          <div class="payment-success-icon">&#10003;</div>
+          <div>
+            <strong>Payment successful</strong>
+            <span>Payment has successfully been completed.</span>
+          </div>
+        </div>
+
         <div class="form-nav">
           <button class="btn btn-ghost" data-action="back">&larr; Back</button>
           <button class="btn btn-primary" data-action="submit">Submit &amp; pay</button>
@@ -276,12 +292,9 @@
 
       <!-- Panel 5: Mobile app signing -->
       <div class="form-panel" data-panel="mobile-approval">
-        <h3>Payment successful</h3>
-        <p class="fp-sub">Payment has successfully been completed. Your request has been sent to the mobile app for policy signing.</p>
-
         <div style="display:flex; justify-content:center; padding:10px 0 14px;">
           <div style="width:360px; background:#111827; border-radius:34px; padding:12px; box-shadow:0 16px 28px rgba(16,24,40,.18);">
-            <div style="background:#f2efe8; border-radius:26px; padding:12px 14px 16px; min-height:560px;">
+            <div style="background:#f2efe8; border-radius:26px; padding:12px 14px 16px; min-height:680px;">
               <div style="display:flex; align-items:center; justify-content:space-between; font-size:12px; color:#334155; font-weight:600;">
                 <span>NIFT Life</span>
                 <span style="display:inline-flex; align-items:center; justify-content:center; width:24px; height:24px; border-radius:50%; background:#dfe9e1;">✓</span>
@@ -295,7 +308,7 @@
                 <div style="margin-top:4px; font-size:12px; color:#475569;">City: <strong id="mobile-applicant-city">—</strong></div>
               </div>
 
-              <div style="margin-top:12px; height:330px; overflow:auto; background:#ffffff; border:1px solid rgba(82,100,90,.18); border-radius:16px; padding:12px;">
+              <div style="margin-top:12px; height:430px; overflow:auto; background:#ffffff; border:1px solid rgba(82,100,90,.18); border-radius:16px; padding:12px;">
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
                   <div style="font-size:11px; font-weight:700; color:#334155;">Policy document</div>
                   <div style="font-size:10px; color:#64748b;">PDF</div>
@@ -337,8 +350,51 @@
           </div>
         </div>
 
+          <div class="form-nav" style="justify-content:flex-end;">
+            <button class="btn btn-primary" data-action="certificate-next" id="cert-finish-btn" disabled>View signed PDF</button>
+          </div>
+
+      </div>
+
+      <!-- Panel 7: Signed policy PDF -->
+      <div class="form-panel" data-panel="signed-pdf">
+        <h3>Signed policy PDF</h3>
+        <p class="fp-sub">Your signed policy copy is ready with the details submitted by the applicant.</p>
+
+        <div class="signed-pdf" id="signed-pdf" aria-live="polite">
+          <div class="signed-pdf-toolbar">
+            <span>Signed policy PDF</span>
+            <span class="signed-pdf-status">SIGNED</span>
+          </div>
+          <div class="signed-pdf-page">
+            <div class="signed-pdf-heading">Policy agreement</div>
+            <p>This policy document has been electronically signed and is ready for your records.</p>
+            <div class="signed-policy-details">
+              <div><span>Policy</span><strong id="signed-policy-name">—</strong></div>
+              <div><span>Applicant</span><strong id="signed-applicant-name">—</strong></div>
+              <div><span>CNIC</span><strong id="signed-applicant-cnic">—</strong></div>
+              <div><span>Date of birth</span><strong id="signed-applicant-dob">—</strong></div>
+              <div><span>City</span><strong id="signed-applicant-city">—</strong></div>
+              <div><span>Phone</span><strong id="signed-applicant-phone">—</strong></div>
+              <div><span>Email</span><strong id="signed-applicant-email">—</strong></div>
+              <div><span>Coverage</span><strong id="signed-policy-cover">—</strong></div>
+              <div><span>Frequency</span><strong id="signed-policy-frequency">—</strong></div>
+            </div>
+            <div class="signed-benefits">
+              <div class="signed-benefits-heading">Key benefits</div>
+              <ol id="signed-policy-benefits"></ol>
+            </div>
+            <div class="signature-block">
+              <span class="signature-label">Electronic signature</span>
+              <strong id="signed-by-name">—</strong>
+              <span class="signature-line"></span>
+              <span class="signature-caption">Signed by policy applicant</span>
+            </div>
+          </div>
+        </div>
+
         <div class="form-nav" style="justify-content:flex-end;">
-          <button class="btn btn-primary" data-action="finish" id="cert-finish-btn" disabled>View confirmation</button>
+          <button class="btn btn-primary" data-action="finish" id="signed-pdf-finish-btn">View confirmation</button>
         </div>
       </div>
 
