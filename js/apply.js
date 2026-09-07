@@ -69,6 +69,7 @@
       refreshPremiumSummary();
       renderMobileApproval();
     }
+    if (activePanel && activePanel.dataset.panel === 'signed-pdf') renderSignedPdf();
 
     const card = document.querySelector('.form-card');
     if (card) window.scrollTo({ top: card.offsetTop - 100, behavior: 'smooth' });
@@ -256,28 +257,6 @@
 
     const lastDelay = steps[steps.length - 1].delay;
     setTimeout(() => {
-      const signedPdf = document.getElementById('signed-pdf');
-      const signedByName = document.getElementById('signed-by-name');
-      const signedDetails = {
-        'signed-policy-name': selectedPlan || 'Security Plus Plan',
-        'signed-applicant-name': fieldVal('inp-name') || signedApplicantName || 'Customer',
-        'signed-applicant-cnic': fieldVal('inp-cnic') || '—',
-        'signed-applicant-dob': fieldVal('inp-dob') || '—',
-        'signed-applicant-city': fieldVal('inp-city') || '—',
-        'signed-applicant-phone': fieldVal('inp-phone') ? '+92 ' + fieldVal('inp-phone') : '—',
-        'signed-applicant-email': fieldVal('inp-email') || '—',
-        'signed-policy-cover': fieldVal('inp-cover') ? 'PKR ' + Number(fieldVal('inp-cover')).toLocaleString('en-PK') : '—',
-        'signed-policy-frequency': fieldVal('inp-freq') || '—',
-      };
-      if (signedByName) signedByName.textContent = signedApplicantName || 'Customer';
-      const signedBenefits = document.getElementById('signed-policy-benefits');
-      if (signedBenefits) {
-        signedBenefits.innerHTML = selectedPolicyBenefits.map((benefit) => `<li>${benefit}</li>`).join('');
-      }
-      Object.keys(signedDetails).forEach((id) => {
-        const element = document.getElementById(id);
-        if (element) element.textContent = signedDetails[id];
-      });
       if (finishBtn) finishBtn.disabled = false;
     }, lastDelay + 400);
   }
@@ -285,6 +264,28 @@
   function fieldVal(id) {
     const el = document.getElementById(id);
     return el ? el.value : '';
+  }
+
+  async function renderSignedPdf() {
+    const canvas = document.getElementById('signed-pdf-canvas');
+    const loading = document.getElementById('pdf-loading');
+    if (!canvas || !loading || typeof pdfjsLib === 'undefined') return;
+    if (canvas.dataset.loaded === 'true') return;
+    try {
+      pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+      const pdf = await pdfjsLib.getDocument('./policy_agreement_signed.pdf?v=20260904').promise;
+      const page = await pdf.getPage(1);
+      const baseViewport = page.getViewport({ scale: 1 });
+      const scale = Math.min(1.5, (canvas.parentElement.clientWidth - 36) / baseViewport.width);
+      const viewport = page.getViewport({ scale });
+      canvas.width = viewport.width;
+      canvas.height = viewport.height;
+      await page.render({ canvasContext: canvas.getContext('2d'), viewport }).promise;
+      canvas.dataset.loaded = 'true';
+      loading.remove();
+    } catch (error) {
+      loading.textContent = 'PDF preview could not load. Use Open signed PDF below.';
+    }
   }
 
   function formatPKR(n) {

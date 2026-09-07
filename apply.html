@@ -359,37 +359,19 @@
       <!-- Panel 7: Signed policy PDF -->
       <div class="form-panel" data-panel="signed-pdf">
         <h3>Signed policy PDF</h3>
-        <p class="fp-sub">Your signed policy copy is ready with the details submitted by the applicant.</p>
+        <p class="fp-sub">Your electronically signed policy copy is ready for viewing.</p>
 
         <div class="signed-pdf" id="signed-pdf" aria-live="polite">
           <div class="signed-pdf-toolbar">
             <span>Signed policy PDF</span>
             <span class="signed-pdf-status">SIGNED</span>
           </div>
-          <div class="signed-pdf-page">
-            <div class="signed-pdf-heading">Policy agreement</div>
-            <p>This policy document has been electronically signed and is ready for your records.</p>
-            <div class="signed-policy-details">
-              <div><span>Policy</span><strong id="signed-policy-name">—</strong></div>
-              <div><span>Applicant</span><strong id="signed-applicant-name">—</strong></div>
-              <div><span>CNIC</span><strong id="signed-applicant-cnic">—</strong></div>
-              <div><span>Date of birth</span><strong id="signed-applicant-dob">—</strong></div>
-              <div><span>City</span><strong id="signed-applicant-city">—</strong></div>
-              <div><span>Phone</span><strong id="signed-applicant-phone">—</strong></div>
-              <div><span>Email</span><strong id="signed-applicant-email">—</strong></div>
-              <div><span>Coverage</span><strong id="signed-policy-cover">—</strong></div>
-              <div><span>Frequency</span><strong id="signed-policy-frequency">—</strong></div>
-            </div>
-            <div class="signed-benefits">
-              <div class="signed-benefits-heading">Key benefits</div>
-              <ol id="signed-policy-benefits"></ol>
-            </div>
-            <div class="signature-block">
-              <span class="signature-label">Electronic signature</span>
-              <strong id="signed-by-name">—</strong>
-              <span class="signature-line"></span>
-              <span class="signature-caption">Signed by policy applicant</span>
-            </div>
+          <div class="signed-pdf-viewer" id="signed-pdf-viewer" aria-label="Signed policy PDF">
+            <div class="pdf-loading" id="pdf-loading">Loading signed PDF...</div>
+            <canvas id="signed-pdf-canvas"></canvas>
+          </div>
+          <div class="signed-pdf-fallback">
+            <a class="btn btn-primary" href="./policy_agreement_signed.pdf?v=20260904" target="_blank" rel="noopener">Open signed PDF</a>
           </div>
         </div>
 
@@ -424,6 +406,7 @@
   </div>
 </footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script src="./js/main.js"></script>
 <script src="./js/apply.js"></script>
 </body>

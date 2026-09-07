@@ -203,20 +203,10 @@
   border-bottom:1px solid var(--sage-line);font-size:12px;font-weight:700;color:var(--emerald-deep);
 }
 .signed-pdf-status{padding:4px 9px;border-radius:999px;background:var(--emerald);color:var(--white);font-size:10px;letter-spacing:.04em;}
-.signed-pdf-page{margin:14px;background:var(--white);border:1px solid #dfe4dd;border-radius:4px;padding:20px 22px;min-height:150px;}
-.signed-pdf-heading{font-family:var(--serif);font-size:18px;color:var(--ink);margin-bottom:6px;}
-.signed-pdf-page p{font-size:12px;color:var(--gray-600);margin-bottom:22px;}
-.signed-policy-details{display:grid;grid-template-columns:1fr 1fr;gap:8px 18px;margin-bottom:22px;padding-bottom:16px;border-bottom:1px solid var(--sage-line);}
-.signed-policy-details div{display:flex;justify-content:space-between;gap:10px;font-size:11px;}
-.signed-policy-details span{color:var(--gray-600);}
-.signed-policy-details strong{text-align:right;color:var(--ink);font-weight:700;}
-.signed-benefits{margin-bottom:22px;padding:12px 14px;border:1px solid rgba(82,100,90,.18);border-radius:8px;background:#f8faf8;}
-.signed-benefits-heading{font-size:11px;color:#64748b;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px;}
-.signed-benefits ol{margin:0;padding-left:18px;color:#334155;font-size:11px;line-height:1.7;}
-.signature-block{width:220px;display:flex;flex-direction:column;align-items:flex-start;gap:3px;}
-.signature-label,.signature-caption{font-size:10px;color:var(--gray-600);}
-.signature-block strong{font-family:var(--serif);font-size:17px;color:var(--emerald-deep);font-weight:600;}
-.signature-line{width:100%;border-bottom:1px solid var(--emerald-deep);margin-top:1px;}
+.signed-pdf-viewer{display:flex;align-items:flex-start;justify-content:center;width:100%;min-height:680px;padding:18px;background:#525659;overflow:auto;}
+.signed-pdf-viewer canvas{display:block;max-width:100%;height:auto;background:var(--white);box-shadow:0 2px 8px rgba(0,0,0,.22);}
+.pdf-loading{align-self:center;color:var(--white);font-size:13px;}
+.signed-pdf-fallback{display:flex;justify-content:flex-end;padding:10px 14px;background:var(--white);}
 @keyframes signed-pdf-in{to{opacity:1;transform:translateY(0);}}
 
 @media(max-width:900px){
