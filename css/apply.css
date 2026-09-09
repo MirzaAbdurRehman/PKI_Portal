@@ -14,22 +14,31 @@
 }
 .step-item:not(:last-child)::after{
   content:'';position:absolute;left:29px;top:44px;width:1.5px;height:calc(100% - 20px);
-  background:var(--sage-line);
+  background:#d8e0da;transition:background .4s ease, box-shadow .4s ease;
+}
+.step-item.done:not(:last-child)::after{
+  background:var(--gold);
+  box-shadow:0 0 0 1px rgba(201,157,75,.08);
 }
 .step-dot{
-  width:30px;height:30px;border-radius:50%;background:var(--white);
-  border:2px solid var(--sage-line);flex-shrink:0;
+  width:36px;height:36px;border-radius:50%;background:#f7faf7;
+  border:2px solid #cbd6ce;flex-shrink:0;
   display:flex;align-items:center;justify-content:center;
-  font-size:12.5px;font-weight:700;color:var(--gray-600);z-index:1;
-  transition:all .2s ease;
+  font-size:13px;font-weight:700;color:#718078;z-index:1;
+  transition:background .35s ease, border-color .35s ease, color .35s ease, transform .35s ease, box-shadow .35s ease;
 }
-.step-item.active .step-dot{background:var(--emerald);border-color:var(--emerald);color:var(--white);}
-.step-item.done .step-dot{background:var(--gold);border-color:var(--gold);color:var(--emerald-deep);}
-.step-item.done .step-dot::after{content:'✓';}
+.step-item.active .step-dot{
+  background:#b3452c;border-color:#b3452c;color:var(--white);
+  transform:scale(1.08);box-shadow:0 0 0 5px rgba(179,69,44,.15);
+  animation:step-active-in .45s ease both;
+}
+.step-item.done .step-dot{background:var(--emerald);border-color:var(--emerald);color:var(--white);}
+.step-item.done .step-dot::after{content:'✓';animation:step-check-in .3s ease both;}
 .step-item.done .step-dot span{display:none;}
-.step-label b{display:block;font-size:14px;color:var(--ink);}
+.step-label b{display:block;font-size:15px;color:var(--ink);transition:color .3s ease;}
 .step-label span{font-size:12px;color:var(--gray-600);}
-.step-item.active .step-label b{color:var(--emerald-deep);}
+.step-item.active .step-label b{color:#963a27;}
+.step-item.done .step-label b{color:var(--emerald);}
 
 /* Form card */
 .form-card{
@@ -37,7 +46,7 @@
   padding:40px;
 }
 .form-panel{display:none;}
-.form-panel.active{display:block;}
+.form-panel.active{display:block;animation:form-panel-in .38s ease both;}
 .form-panel h3{font-size:22px;margin-bottom:6px;}
 .form-panel .fp-sub{font-size:14px;color:var(--gray-600);margin-bottom:30px;}
 
@@ -92,6 +101,9 @@
 .payment-success strong{display:block;font-size:14.5px;color:var(--emerald-deep);}
 .payment-success span{display:block;margin-top:3px;font-size:12.5px;color:var(--gray-600);}
 @keyframes payment-success-in{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+@keyframes step-active-in{from{opacity:.65;transform:scale(.88);}to{opacity:1;transform:scale(1.08);}}
+@keyframes step-check-in{from{opacity:0;transform:scale(.5);}to{opacity:1;transform:scale(1);}}
+@keyframes form-panel-in{from{opacity:0;transform:translateX(12px);}to{opacity:1;transform:translateX(0);}}
 
 /* Review panel */
 .review-block{margin-bottom:22px;}
