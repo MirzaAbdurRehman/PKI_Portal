@@ -146,12 +146,13 @@
   const requestedPlanCard = requestedPlan
     ? Array.from(document.querySelectorAll('.plan-pick')).find((card) => card.dataset.planName === requestedPlan)
     : null;
-  if (requestedPlanCard) selectPlan(requestedPlanCard);
+  const defaultPlanCard = Array.from(document.querySelectorAll('.plan-pick')).find((card) => card.dataset.planName === 'Security Plus Plan');
+  selectPlan(requestedPlanCard || defaultPlanCard);
 
   const requestedCover = applicationParams.get('cover');
   const coverInput = document.getElementById('inp-cover');
-  if (coverInput && /^\d+$/.test(requestedCover || '')) {
-    coverInput.value = requestedCover;
+  if (coverInput) {
+    coverInput.value = /^\d+$/.test(requestedCover || '') ? requestedCover : '1000000';
   }
 
   const requestedFrequency = applicationParams.get('frequency');

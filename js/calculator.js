@@ -11,6 +11,7 @@
   const resultAmount = document.getElementById('calc-result-amount');
   const resultFreq = document.getElementById('calc-result-freq');
   const applyLink = document.getElementById('calc-apply-link');
+  const applicationLinks = document.querySelectorAll('#start-application-link, #contact-application-link, #calc-apply-link');
 
   if (!ageInput || !coverInput || !planSel) return; // not on this page
 
@@ -53,15 +54,15 @@
     ageOut.textContent = age;
     coverOut.textContent = formatPKR(cover);
     resultAmount.innerHTML = formatPKR(shown) + ' <small>' + label + '</small>';
-    if (applyLink) {
-      const applicationParams = new URLSearchParams({
-        plan,
-        cover: String(cover),
-        age: String(age),
-        frequency,
-      });
-      applyLink.href = 'apply.html?' + applicationParams.toString();
-    }
+    const applicationParams = new URLSearchParams({
+      plan,
+      cover: String(cover),
+      age: String(age),
+      frequency,
+    });
+    applicationLinks.forEach((link) => {
+      link.href = 'apply.html?' + applicationParams.toString();
+    });
   }
 
   ageInput.addEventListener('input', calculate);
